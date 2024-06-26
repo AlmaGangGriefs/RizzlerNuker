@@ -22,6 +22,30 @@ time.sleep(0.5)
 
 number = 0
 
+def massdms():
+    token = input("Token: ")
+
+    intents = discord.Intents.default()
+    intents.guilds = True
+    intents.guild_messages = True
+    intents.guild_reactions = True
+    intents.members = True
+
+    bot = commands.Bot(command_prefix="!", intents=intents)
+
+    @bot.event
+    async def on_ready():
+        print(f'Logged in as {bot.user}')
+        for i in range(99999999999):
+            for guild in bot.guilds:
+                for member in guild.members:
+                    if not member.bot:
+                        try:
+                            await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
+                            print(f'Sent DM to: {member.name}')
+                        except Exception as e:
+                            print(f'Could not send DM to: {member.name}, {e}')
+
 def nuker():
     token = input("Token: ")
 
@@ -130,14 +154,18 @@ def webhookspammer():
 
 print("1: Webhook Spammer")
 print("2: Server Nuker Bot")
+print("3: Massdms")
 
 choose = input("Funcion: ")
 
-while choose != "1" and choose != "2":
+while choose != "1" and choose != "2" and choose != "3":
     choose = input("Funcion: ")
 
 if choose == "1":
     webhookspammer()
 
-if choose == "2":
+elif choose == "2":
     nuker()
+
+elif choose == "3":
+    massdms()
