@@ -45,6 +45,7 @@ def massdms():
                             print(f'Sent DM to: {member.name}')
                         except Exception as e:
                             print(f'Could not send DM to: {member.name}, {e}')
+    bot.run(token)
 
 def nuker():
     token = input("Token: ")
